@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { render } from 'react-dom'
 import Root from './app/containers/Root'
 
 chrome.storage.local.get('state', (obj) => {
@@ -7,7 +7,7 @@ chrome.storage.local.get('state', (obj) => {
   const initialState = JSON.parse(state || '{}')
 
   const configureStore = require('./app/store/configureStore').default
-  ReactDOM.render(
+  render(
     <Root store={configureStore(initialState)} />,
     document.querySelector('#root')
   )

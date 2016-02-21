@@ -27,7 +27,6 @@ export default class BitItem extends Component {
       element = (
         <BitForm
           content={bit.content}
-          addBit={addBit}
           editing={this.state.editing}
           onSave={(content) => this.handleSave(bit.id, content)}
           />
@@ -38,7 +37,6 @@ export default class BitItem extends Component {
           <label onDoubleClick={this.handleDoubleClick.bind(this)}>
             {this.props.bit.content}
           </label>
-          <button onClick={() => deleteBit(bit.id)}>Delete</button>
         </div>
       )
     }

@@ -1,24 +1,18 @@
 import React, { Component, PropTypes } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import BitForm from '../components/BitForm'
-import BitList from '../components/BitList'
-import * as BitActions from '../actions/bits'
+import MainSection from '../components/MainSection'
+import * as Actions from '../actions/index'
 
 class App extends Component {
   render() {
     const { bits, actions } = this.props
     return (
       <div>
-        <ul id="background">
-          <li></li>
-        </ul>
-        <BitForm newBit onSave={actions.addBit} />
-        <BitList
-          addBit={actions.addBit}
-          deleteBit={actions.deleteBit}
-          editBit={actions.editBit}
-          bits={bits} />
+        <div className="background-overlay">
+          <img src="https://w-dog.net/wallpapers/9/16/433555943594116/japan-torii-night-sunset-horizon-sea-ocean-calm-sky-blue.jpg" />
+        </div>
+        <MainSection bits={bits} actions={actions} />
       </div>
     )
   }
@@ -37,7 +31,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(BitActions, dispatch)
+    actions: bindActionCreators(Actions, dispatch)
   }
 }
 

@@ -3,13 +3,15 @@ import BitItem from './BitItem'
 
 export default class BitList extends Component {
   render() {
+    const { editBit, deleteBit, addBit } = this.props.actions
+
     const bits = this.props.bits.map((bit) =>
       <BitItem
         key={bit.id}
         bit={bit}
-        editBit={this.props.editBit}
-        deleteBit={this.props.deleteBit}
-        addBit={this.props.addBit}
+        editBit={editBit}
+        deleteBit={deleteBit}
+        addBit={addBit}
         />
     )
 
@@ -23,7 +25,5 @@ export default class BitList extends Component {
 
 BitList.proptypes = {
   bits: PropTypes.array.isRequired,
-  editBit: PropTypes.func.isRequired,
-  deleteBit: PropTypes.func.isRequired,
-  addBit: PropTypes.func.isRequired
+  actions: PropTypes.object.isRequired
 }

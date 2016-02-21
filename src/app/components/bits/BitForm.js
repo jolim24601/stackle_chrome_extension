@@ -8,14 +8,9 @@ export default class BitForm extends Component {
     }
   }
 
-  handleSubmit(e) {
-     const content = e.target.value.trim()
-     if (e.which === 13) {
-       this.props.onSave(content)
-       if (this.props.newBit) {
-         this.setState({ content: '' })
-       }
-     }
+  handleClick() {
+     this.props.onSave(this.state.content)
+     this.setState({ content: '' })
    }
 
    handleChange(e) {
@@ -23,13 +18,13 @@ export default class BitForm extends Component {
    }
 
    handleBlur(e) {
-     if (!this.props.newBit) {
+     if (this.props.editing) {
        this.props.onSave(e.target.value)
      }
    }
 
    render() {
-     return (
+     const contentField = (
        <textarea
          className="bit-form"
          type="text"
@@ -38,8 +33,26 @@ export default class BitForm extends Component {
          value={this.state.content}
          onBlur={this.handleBlur.bind(this)}
          onChange={this.handleChange.bind(this)}
-         onKeyDown={this.handleSubmit.bind(this)}
          />
+     )
+
+     let wrapper
+     if (this.props.editing) {
+       wrapper = <div>{contentField}</div>
+     } else {
+       wrapper = (
+         <div>
+           <div>In Stack X</div>
+           {contentField}
+           <button onClick={this.handleClick.bind(this)}>Create Bit</button>
+         </div>
+       )
+     }
+
+     return (
+       <div>
+         {wrapper}
+       </div>
      )
    }
 }
@@ -47,6 +60,5 @@ export default class BitForm extends Component {
 BitForm.propTypes = {
   onSave: PropTypes.func.isRequired,
   content: PropTypes.string,
-  editing: PropTypes.bool,
-  newBit: PropTypes.bool
+  editing: PropTypes.bool
 }
