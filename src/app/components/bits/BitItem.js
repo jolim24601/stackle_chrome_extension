@@ -3,7 +3,7 @@ import BitForm from './BitForm'
 
 export default class BitItem extends Component {
   constructor(props, context) {
-    super(props, context);
+    super(props, context)
     this.state = { editing: false }
   }
 
