@@ -3,6 +3,7 @@ import BitForm from './bits/BitForm'
 import BitList from './bits/BitList'
 import NewBit from './buttons/NewBit'
 import Time from './widgets/Time'
+import './Main.css'
 
 export default class MainSection extends Component {
   constructor(props, context) {
@@ -17,10 +18,11 @@ export default class MainSection extends Component {
   }
 
   handleSave(content) {
-    if (content.length !== 0) {
+    if (content.trim().length !== 0) {
       this.props.actions.addBit(content)
-      this.setState({ showBitForm: false })
     }
+
+    this.setState({ showBitForm: false })
   }
 
   render() {
@@ -39,8 +41,11 @@ export default class MainSection extends Component {
 
     return (
       <section className="main">
-        <h1 className="greetings-widget">Hello, John</h1>
-        <Time />
+        <div className="centerAbove">
+          <Time />
+          <h1 id="greetings">Good day, John</h1>
+        </div>
+
         {form}
 
         <BitList actions={actions} bits={bits}/>

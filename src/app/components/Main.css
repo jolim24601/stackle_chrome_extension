@@ -1,0 +1,22 @@
+.main {
+  z-index: 10;
+  position: absolute;
+  top: 0; right:0; bottom: 0; left: 0;
+}
+
+.centerAbove {
+  position: relative;
+  top: 50px;
+  text-align: center;
+}
+
+#greetings {
+  font-size: 32px;
+  white-space: nowrap;
+  letter-spacing: 0;
+}
+
+#time {
+  font-size: 36px;
+  font-weight: 700;
+}

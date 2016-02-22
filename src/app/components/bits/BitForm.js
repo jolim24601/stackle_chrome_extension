@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import './BitForm.css'
 
 export default class BitForm extends Component {
   constructor(props, context) {
@@ -9,42 +10,52 @@ export default class BitForm extends Component {
   }
 
   handleClick() {
-     this.props.onSave(this.state.content)
-     this.setState({ content: '' })
-   }
+    this.props.onSave(this.state.content)
+    this.setState({ content: '' })
+  }
 
-   handleChange(e) {
-     this.setState({ content: e.target.value })
-   }
+  handleSubmit(e) {
+    // cmd + enter
+    if (e.which === 13 && e.metaKey) {
+      this.handleClick()
+    }
+  }
 
-   handleBlur(e) {
-     if (this.props.editing) {
-       this.props.onSave(e.target.value)
-     }
-   }
+  handleChange(e) {
+    this.setState({ content: e.target.value })
+  }
 
-   render() {
-     const contentField = (
-       <textarea
-         className="bit-form"
-         type="text"
-         placeholder="Start typing..."
-         autoFocus="true"
-         value={this.state.content}
-         onBlur={this.handleBlur.bind(this)}
-         onChange={this.handleChange.bind(this)}
-         />
-     )
+  handleBlur(e) {
+    return;
+    if (this.props.editing) {
+      this.props.onSave(e.target.value)
+    }
+  }
 
-     let wrapper
-     if (this.props.editing) {
-       wrapper = <div>{contentField}</div>
+  render() {
+    const bitText = (
+      <textarea
+        type="text"
+        placeholder="Start typing..."
+        autoFocus="true"
+        value={this.state.content}
+        onBlur={this.handleBlur.bind(this)}
+        onChange={this.handleChange.bind(this)}
+        onKeyDown={this.handleSubmit.bind(this)}
+        />
+   )
+
+    let wrapper
+    if (this.props.editing) {
+       wrapper = <div className="editBitForm">{bitText}</div>
      } else {
        wrapper = (
-         <div>
-           <div>In Stack X</div>
-           {contentField}
-           <button onClick={this.handleClick.bind(this)}>Create Bit</button>
+         <div className="bitForm">
+           <div className="stackHeader">In Stack X</div>
+           {bitText}
+           <button
+            className="createBit"
+            onClick={this.handleClick.bind(this)}>></button>
          </div>
        )
      }

@@ -16,6 +16,7 @@ class StackleTooltip extends Component {
     const range = selection.getRangeAt(0)
     const rect = range.getBoundingClientRect()
     const selectedText = selection.toString()
+    console.log(selectedText)
     if (selectedText) {
       this.setState({
         visible: true,
@@ -25,6 +26,29 @@ class StackleTooltip extends Component {
     } else {
       this.setState({ visible: false })
     }
+  }
+
+  stackIt() {
+    // Here we can initiate a Cross-Origin XMLHttpRequest like so:
+    // let xhr = new XMLHttpRequest();
+    // xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.
+    // xhr.open("POST", chrome.extension.getURL('some/path/inside/our/extension'), true);
+    // xhr.send();
+
+    // OR if we set permissions to an outside API:
+    // const data = ....create a URI encoded string here
+    // let xhr = new XMLHttpRequest();
+    // xhr.open("POST", "http://api.example.com/data.json", true);
+    // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xhr.setRequestHeader("Content-length", data.length);
+    //
+    // xhr.onreadystatechange = () => {//Call a function when the state changes.
+    //    if (xhr.readyState == 4 && xhr.status == 200) {
+    //       console.log('STACKED')
+    //    }
+    // }
+    // xhr.send(data);
+    console.log('STACKED')
   }
 
   render() {
@@ -37,9 +61,10 @@ class StackleTooltip extends Component {
     if (this.state.visible) {
       return (
         <button
+          onClick={this.stackIt.bind(this)}
           id="stackle-tool"
           style={toolStyle}>
-          Create Bit
+          Stack It
         </button>
       )
     } else {

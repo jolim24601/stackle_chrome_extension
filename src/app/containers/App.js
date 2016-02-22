@@ -3,15 +3,17 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import MainSection from '../components/MainSection'
 import * as Actions from '../actions/index'
+import './App.css';
 
 class App extends Component {
   render() {
     const { bits, actions } = this.props
     return (
       <div>
-        <div className="background-overlay">
-          <img src="https://w-dog.net/wallpapers/9/16/433555943594116/japan-torii-night-sunset-horizon-sea-ocean-calm-sky-blue.jpg" />
-        </div>
+        <div className="fadein backgroundOverlay" />
+        <ul id="background">
+          <li className="fadein backgroundImage" />
+        </ul>
         <MainSection bits={bits} actions={actions} />
       </div>
     )

@@ -17,12 +17,25 @@ module.exports = {
        }
      }),
     new webpack.optimize.DedupePlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
   ],
   module: {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
       exclude: /node_modules/
+    },
+    {
+      test: /\.css$/, 
+      loader: 'style!css'
+    },
+    { 
+      test: /\.png$/, 
+      loader: 'url-loader?limit=100000'
     }]
   }
 };

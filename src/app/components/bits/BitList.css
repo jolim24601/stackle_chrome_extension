@@ -1,0 +1,6 @@
+.bitList {
+  margin-top: 50px;
+  margin-left: 10px;
+  width: 50%;
+  overflow-y: auto;
+}

@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import BitItem from './BitItem'
+import './BitList.css'
 
 export default class BitList extends Component {
   render() {
@@ -16,7 +17,7 @@ export default class BitList extends Component {
     )
 
     return (
-      <ul>
+      <ul className="bitList">
         {bits}
       </ul>
     )

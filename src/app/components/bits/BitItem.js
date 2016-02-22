@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import BitForm from './BitForm'
+import './Bit.css'
 
 export default class BitItem extends Component {
   constructor(props, context) {
@@ -12,7 +13,7 @@ export default class BitItem extends Component {
   }
 
   handleSave(id, content) {
-    if (content.length === 0) {
+    if (content.trim().length === 0) {
       this.props.deleteBit(id)
     } else {
       this.props.editBit(id, content)
@@ -34,15 +35,13 @@ export default class BitItem extends Component {
     } else {
       element = (
         <div>
-          <label onDoubleClick={this.handleDoubleClick.bind(this)}>
-            {this.props.bit.content}
-          </label>
+          {this.props.bit.content}
         </div>
       )
     }
 
     return (
-      <li>
+      <li onDoubleClick={this.handleDoubleClick.bind(this)} className="bit">
         {element}
       </li>
     )

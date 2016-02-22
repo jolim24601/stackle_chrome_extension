@@ -1,0 +1,48 @@
+.bitForm {
+  margin: 0 auto;
+  height: auto;
+  position: absolute;
+  bottom: 100px;
+  left: 50%;
+  width: 50%;
+}
+
+.bitForm textarea {
+  transform: translateX(-50%);
+  min-height: 300px;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  border-radius: 2px;
+}
+
+.editBitForm {
+
+}
+
+.editBitForm textarea {
+  border: 0;
+  width: 100%;
+}
+
+.createBit {
+  border-radius: 50%;
+  background-color: #02b875;
+  border: 0;
+  color: #fff;
+  box-shadow: 0 1px rgba(0,0,0,0.3);
+  line-height: 2px;
+  cursor: pointer;
+  position: fixed;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 30px;
+  height: 40px;
+  width: 40px;
+  z-index: 1000;
+  font-size: 1.33333333em;
+}
+
+.createBit:hover {
+  background-color: #029f65;
+}

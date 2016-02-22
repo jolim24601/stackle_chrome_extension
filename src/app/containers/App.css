@@ -1,0 +1,105 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font: inherit;
+  background: transparent;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  font-family: Helvetica;
+  font-size: 1em;
+  color: #fff;
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+/* remember to define visible focus styles! 
+:focus {
+  outline: ?????;
+} */
+
+/* remember to highlight inserts somehow! */
+ins {
+  text-decoration: none;
+}
+del {
+  text-decoration: line-through;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button:focus, input:focus, textarea:focus {
+  font-size: 1em;
+  outline: 0;
+}
+
+.group {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.backgroundOverlay {
+  background-image: url("../../assets/img/overlay-vignette.png");
+  background-size: 100% 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  /*opacity: 0;*/
+}
+
+#background {
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+}
+
+#background, #background li {
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+#background li {
+  background-image: url("https://w-dog.net/wallpapers/9/16/433555943594116/japan-torii-night-sunset-horizon-sea-ocean-calm-sky-blue.jpg");
+  /*opacity: 0;*/
+}
+
+.fadein {
+  -webkit-animation: fadein .5s ease 0s forwards;
+}
