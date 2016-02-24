@@ -22,7 +22,13 @@ export default class MainSection extends Component {
       this.props.actions.addBit(content)
     }
 
+    this.handlePotentialBit()
     this.setState({ showBitForm: false })
+  }
+
+  handlePotentialBit() {
+    // the bit was handled, so get rid of it
+    this.props.actions.deletePotentialBit(this.props.potentialBit)  
   }
 
   render() {
@@ -34,7 +40,6 @@ export default class MainSection extends Component {
           <BitForm content={potentialBit.content} onSave={this.handleSave.bind(this)} />
         </div>
       )
-
 
     } else if (this.state.showBitForm) {
       form = (

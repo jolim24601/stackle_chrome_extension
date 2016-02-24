@@ -26,14 +26,16 @@ export default class BitForm extends Component {
   }
 
   handleBlur(e) {
-    return;
     if (this.props.editing) {
       this.props.onSave(e.target.value)
     }
   }
 
   render() {
-    const bitText = (
+
+    // if editing, simply render the form in place, else render the sticky form
+
+    const bitEditor = (
       <textarea
         type="text"
         placeholder="Start typing..."
@@ -47,12 +49,12 @@ export default class BitForm extends Component {
 
     let wrapper
     if (this.props.editing) {
-       wrapper = <div className="editBitForm">{bitText}</div>
+       wrapper = <div className="editBitForm">{bitEditor}</div>
      } else {
        wrapper = (
          <div className="fadein bitForm">
            <div className="stackHeader">In Stack X</div>
-           {bitText}
+           {bitEditor}
            <button
             className="createBit"
             onClick={this.handleClick.bind(this)}>></button>
