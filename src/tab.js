@@ -8,9 +8,9 @@ chrome.storage.local.get(['bits', 'potentialBit'], (objs) => {
   let parsedBits = bits ? JSON.parse(bits) : []
   let parsedBit = potentialBit ? JSON.parse(potentialBit) : {}
 
-  const initialState = { 
-    bits: parsedBits, 
-    potentialBit: parsedBit || {} 
+  const initialState = {
+    bits: parsedBits,
+    potentialBit: parsedBit 
 
   }
 
