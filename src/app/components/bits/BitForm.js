@@ -50,7 +50,7 @@ export default class BitForm extends Component {
        wrapper = <div className="editBitForm">{bitText}</div>
      } else {
        wrapper = (
-         <div className="bitForm">
+         <div className="fadein bitForm">
            <div className="stackHeader">In Stack X</div>
            {bitText}
            <button

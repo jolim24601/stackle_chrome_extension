@@ -26,8 +26,17 @@ export default class MainSection extends Component {
   }
 
   render() {
+    const { bits, potentialBit, actions } = this.props
     let form
-    if (this.state.showBitForm) {
+    if (potentialBit.content && potentialBit.content.length > 0) {
+      form = (
+        <div>
+          <BitForm content={potentialBit.content} onSave={this.handleSave.bind(this)} />
+        </div>
+      )
+
+
+    } else if (this.state.showBitForm) {
       form = (
         <BitForm onSave={this.handleSave.bind(this)} />
       )
@@ -35,20 +44,18 @@ export default class MainSection extends Component {
       form = (
         <NewBit onClick={this.handleClick.bind(this)} />
       )
-    }
-
-    const { bits, actions } = this.props
+    } 
 
     return (
-      <section className="main">
+      <section className="fadein main">
         <div className="centerAbove">
           <Time />
           <h1 id="greetings">Good day, John</h1>
         </div>
-
+        
         {form}
 
-        <BitList actions={actions} bits={bits}/>
+        <BitList bits={bits} actions={actions} />
       </section>
     )
   }
@@ -56,5 +63,6 @@ export default class MainSection extends Component {
 
 MainSection.propTypes = {
   bits: PropTypes.array.isRequired,
+  potentialBit: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }

@@ -12,14 +12,6 @@ export function editBit(id, content) {
   return { type: types.EDIT_BIT, id, content }
 }
 
-export function addStack({ title, privacy }) {
-  return { type: types.ADD_STACK, title, privacy }
-}
-
-export function deleteStack(id) {
-  return { type: types.DELETE_STACK, id }
-}
-
-export function editStack({ id, title, privacy }) {
-  return { type: types.EDIT_STACK, id, title, privacy }
+export function deletePotentialBit(potentialBit) {
+  return { type: types.DELETE_POTENTIAL_BIT, potentialBit }
 }

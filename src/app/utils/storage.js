@@ -1,5 +1,6 @@
 function saveState(state) {
-  chrome.storage.local.set({ state: JSON.stringify(state) })
+  chrome.storage.local.set({ bits: JSON.stringify(state.bits) })
+  chrome.storage.local.set({ potentialBit: JSON.stringify(state.potentialBit) })
 }
 
 export default function() {

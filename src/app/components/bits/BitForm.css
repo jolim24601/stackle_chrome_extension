@@ -5,6 +5,7 @@
   bottom: 100px;
   left: 50%;
   width: 50%;
+  opacity: 0;
 }
 
 .bitForm textarea {

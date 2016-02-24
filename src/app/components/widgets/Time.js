@@ -4,13 +4,22 @@ import moment from 'moment'
 export default class Time extends Component {
   constructor(props, context) {
     super(props, context)
-    this.state = { time: this.formatTime() }
+    // eventually pass the format in as prop
+    this.state = { format: 'LT' }
   }
 
   componentDidMount() {
     this.intervalId = setInterval(
       () => this.setState({ time: this.formatTime() }
-    ), 100)
+    ), 6000)
+  }
+
+  toggleFormat() {
+    if (this.state.format === 'HH:mm') {
+      this.setState({ format: 'LT' })
+    } else {  
+      this.setState({ format: 'HH:mm' })
+    }
   }
 
   componentWillUnmount() {
@@ -19,11 +28,16 @@ export default class Time extends Component {
   }
 
   formatTime() {
-    return `${moment().format('LT')}`
+    return moment().format(this.state.format)
   }
+
   render() {
     return (
-      <h1 id="time">{this.state.time}</h1>
+      <h1 
+        onDoubleClick={this.toggleFormat.bind(this)} 
+        id="time">
+        {this.formatTime()}
+      </h1>
     )
   }
 }
