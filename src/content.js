@@ -1,8 +1,18 @@
 function writeSelection() {
-  let text = window.getSelection().toString()
-  let state = JSON.stringify({ content: text })
-  console.log(state)
-  chrome.storage.local.set({ potentialBit: state })
+  const defaultBit = {
+    user_id: 1,
+    privacy: false,
+    content: '',
+    kind: 'text',
+    stackIds: []
+  }
+
+  const text = window.getSelection().toString()
+  const potentialBit = JSON.stringify(
+    Object.assign({}, defaultBit, { content: text })
+  )
+  console.log(potentialBit)
+  chrome.storage.local.set({ potentialBit })
 }
 
 window.addEventListener('load', () => {

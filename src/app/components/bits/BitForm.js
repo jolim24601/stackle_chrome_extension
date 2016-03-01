@@ -4,8 +4,13 @@ import './BitForm.css'
 export default class BitForm extends Component {
   constructor(props, context) {
     super(props, context)
+
     this.state = {
-      content: this.props.content || ''
+      privacy: false,
+      content: '',
+      kind: 'text',
+      user_id: 1,
+      stackIds: []
     }
   }
 
@@ -36,8 +41,8 @@ export default class BitForm extends Component {
     // if editing, simply render the form in place, else render the sticky form
 
     const bitEditor = (
-      <textarea
-        type="text"
+      <div
+        contentEditable='true'
         placeholder="Start typing..."
         autoFocus="true"
         value={this.state.content}
@@ -72,6 +77,6 @@ export default class BitForm extends Component {
 
 BitForm.propTypes = {
   onSave: PropTypes.func.isRequired,
-  content: PropTypes.string,
+  potentialBit: PropTypes.object,
   editing: PropTypes.bool
 }

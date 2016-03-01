@@ -54,3 +54,12 @@ BitItem.propTypes = {
   editBit: PropTypes.func.isRequired,
   deleteBit: PropTypes.func.isRequired
 }
+
+// create_table "bits", force: :cascade do |t|
+//   t.integer  "user_id",                   null: false
+//   t.text     "content",                   null: false
+//   t.boolean  "privacy",    default: true
+//   t.datetime "created_at"
+//   t.datetime "updated_at"
+//   t.string   "kind",                      null: false
+// end

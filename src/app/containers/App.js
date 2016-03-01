@@ -7,7 +7,7 @@ import './App.css';
 
 function mapStateToProps(state) {
   return {
-    bits: state.bits,
+    stacks: state.stacks,
     potentialBit: state.potentialBit
   }
 }
@@ -18,24 +18,23 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-
 class App extends Component {
   render() {
-    const { potentialBit, bits, actions } = this.props
     return (
       <div>
         <div className="fadein backgroundOverlay" />
         <ul id="background">
           <li className="fadein backgroundImage" />
         </ul>
-        <MainSection potentialBit={potentialBit} bits={bits} actions={actions} />
+
+        <MainSection {...this.props} />
       </div>
     )
   }
 }
 
 App.propTypes = {
-  bits: PropTypes.array.isRequired,
+  stacks: PropTypes.array.isRequired,
   potentialBit: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 }
@@ -44,4 +43,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App)
-
