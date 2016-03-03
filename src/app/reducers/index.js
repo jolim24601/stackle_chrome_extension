@@ -4,10 +4,10 @@ export default function rootReducer(state, action) {
   // switch statements are of a single lexical scope
   let potentialBit = {
     user_id: 1,
-    content: action.content,
-    privacy: action.privacy,
+    content: action.content || '',
+    privacy: action.privacy || true,
     kind: 'text',
-    stack_ids: action.stackIds
+    stackIds: action.stackIds || []
   }
 
   switch (action.type) {
@@ -15,7 +15,7 @@ export default function rootReducer(state, action) {
       return Object.assign({}, state, { potentialBit })
 
     case REMOVE_BIT:
-      potentialBit = Object.assign({}, potentialBit, initialState)
+      potentialBit = Object.assign({}, potentialBit, { content: '' })
       return Object.assign({}, state, { potentialBit })
 
     default:

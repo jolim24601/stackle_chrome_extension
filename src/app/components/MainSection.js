@@ -17,40 +17,38 @@ export default class MainSection extends Component {
     this.setState({ showBitForm: true })
   }
 
-  handleSave() {
-    const bit = this.props.potentialBit
+  handleSave(bit) {
     if (bit.content.trim().length !== 0) {
-      let formData = new FormData()
-      formData.append('bit', bit)
 
-      httpPost({ formData })
+      httpPost(bit)
     }
 
+    // remove it
     this.handlePotentialBit()
-    this.setState({ showBitForm: false })
   }
 
   handlePotentialBit() {
-    // the bit was handled, so get rid of it
     this.props.actions.removeBit()
+    this.setState({ showBitForm: false })
   }
 
   render() {
     const { stacks, potentialBit, actions } = this.props
+
     let form
-    if (potentialBit.content && potentialBit.content.length > 0) {
-      form = (
-        <div>
-          <BitForm potentialBit={potentialBit} onSave={this.handleSave.bind(this)} />
-        </div>
-      )
-    } else if (this.state.showBitForm) {
-      form = (
-        <BitForm onSave={this.handleSave.bind(this)} />
-      )
+    if (!potentialBit.content
+        && !potentialBit.content.length > 0
+        && !this.state.showBitForm) {
+          form = (
+            <NewBit onClick={this.handleClick.bind(this)} />
+          )
     } else {
       form = (
-        <NewBit onClick={this.handleClick.bind(this)} />
+        <BitForm
+          stacks={stacks}
+          potentialBit={potentialBit}
+          onSave={this.handleSave.bind(this)}
+          />
       )
     }
 

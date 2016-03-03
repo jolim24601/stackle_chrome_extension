@@ -1,10 +1,7 @@
 function writeSelection() {
   const defaultBit = {
-    user_id: 1,
-    privacy: false,
     content: '',
-    kind: 'text',
-    stackIds: []
+    kind: 'text'
   }
 
   const text = window.getSelection().toString()

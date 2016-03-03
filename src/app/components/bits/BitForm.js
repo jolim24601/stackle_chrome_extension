@@ -1,21 +1,30 @@
 import React, { Component, PropTypes } from 'react'
+import FormHeader from '../stacks/FormHeader'
+import Editor from './Editor'
 import './BitForm.css'
+
+const blankState = {
+  selectedStack: null,
+  modalIsOpen: false
+}
 
 export default class BitForm extends Component {
   constructor(props, context) {
     super(props, context)
 
-    this.state = {
-      privacy: false,
-      content: '',
-      kind: 'text',
-      user_id: 1,
-      stackIds: []
-    }
+    this.state = Object.assign({}, blankState, this.props.potentialBit)
   }
 
   handleClick() {
-    this.props.onSave(this.state.content)
+    const bitParams = {
+      user_id: this.state.user_id,
+      privacy: this.state.privacy,
+      content: this.state.content,
+      kind: this.state.kind,
+      stack_ids: this.state.stackIds
+    }
+
+    this.props.onSave(bitParams)
     this.setState({ content: '' })
   }
 
@@ -26,57 +35,55 @@ export default class BitForm extends Component {
     }
   }
 
-  handleChange(e) {
-    this.setState({ content: e.target.value })
+  handleChange(text) {
+    this.setState({ content: text })
   }
 
-  handleBlur(e) {
-    if (this.props.editing) {
-      this.props.onSave(e.target.value)
-    }
+  handleBlur() {
+    this.props.onSave(this.state)
+  }
+
+  handleStack(selectedStack) {
+    this.setState({
+      stackIds: [selectedStack.id],
+      selectedStack,
+      privacy: selectedStack.privacy
+    })
   }
 
   render() {
+    const { stacks } = this.props
+    const selectedStack = this.state.selectedStack || stacks[0]
 
-    // if editing, simply render the form in place, else render the sticky form
+    return (
+      <div className="fadein bitForm">
+        <FormHeader
+           selectedStack={selectedStack}
+           stacks={stacks}
+           onEdit={this.handleStack.bind(this)}
+           />
 
-    const bitEditor = (
-      <div
-        contentEditable='true'
-        placeholder="Start typing..."
-        autoFocus="true"
-        value={this.state.content}
-        onBlur={this.handleBlur.bind(this)}
-        onChange={this.handleChange.bind(this)}
-        onKeyDown={this.handleSubmit.bind(this)}
-        />
-   )
 
-    let wrapper
-    if (this.props.editing) {
-       wrapper = <div className="editBitForm">{bitEditor}</div>
-     } else {
-       wrapper = (
-         <div className="fadein bitForm">
-           <div className="stackHeader">In Stack X</div>
-           {bitEditor}
-           <button
-            className="createBit"
-            onClick={this.handleClick.bind(this)}>></button>
-         </div>
-       )
-     }
+         <Editor
+           text={this.state.content}
+           onChange={this.handleChange.bind(this)}
+           className="editor"
+           options={{
+             toolbar: {buttons: ['h3']},
+             placeholder: {text: 'Add something'}
+           }}
+           />
 
-     return (
-       <div>
-         {wrapper}
-       </div>
-     )
+        <button
+          className="createBit"
+          onClick={this.handleClick.bind(this)}>></button>
+      </div>
+    )
    }
 }
 
 BitForm.propTypes = {
+  stacks: PropTypes.array.isRequired,
   onSave: PropTypes.func.isRequired,
-  potentialBit: PropTypes.object,
-  editing: PropTypes.bool
+  potentialBit: PropTypes.object
 }

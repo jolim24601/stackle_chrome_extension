@@ -1,23 +1,29 @@
 import React, { Component, PropTypes } from 'react'
 
 export default class StackItem extends Component {
+  handleClick() {
+    this.props.editSelectedStack(this.props.stack)
+  }
+
   render() {
     const { stack, handleClick } = this.props
 
     return (
-      <button value={stack.id} onClick={handleClick} className="select--stack--btn">
+      <button
+        value={stack.id}
+        onClick={this.handleClick.bind(this)}
+        className="select--stack--btn"
+        >
+
         <li className="stack--mini group">
           <div className="stack--list--left">
             <h3>{stack.title}</h3>
 
             <div className="stack--list--meta">
-              <span>{stack.privacy ? 'Lock' : ''}</span>
+              <span>{stack.privacy ? 'Lock ' : ' '}</span>
               <span className="bit--count separator">{stack.bits.length} bits</span>
               <span className="time--ago">Edited {stack.timeAgo}</span>
             </div>
-          </div>
-
-          <div className="stack--list--right">
           </div>
         </li>
       </button>
@@ -26,8 +32,8 @@ export default class StackItem extends Component {
 }
 
 StackItem.propTypes = {
-  stack: PropTypes.stack.isRequired,
-  handleClick: PropTypes.func.isRequired
+  stack: PropTypes.object.isRequired,
+  editSelectedStack: PropTypes.func.isRequired
 }
 
 // Stack

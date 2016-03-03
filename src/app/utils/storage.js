@@ -6,7 +6,7 @@ function saveState(state) {
 export default function() {
   return (next) => (reducer, initialState) => {
     const store = next(reducer, initialState)
-    store.subscribe(function() {
+    store.subscribe(() => {
       const state = store.getState()
       saveState(state)
     })

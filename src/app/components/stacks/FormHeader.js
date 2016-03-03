@@ -4,10 +4,7 @@ import StackList from './StackList'
 export default class FormHeader extends Component {
   constructor(props, context) {
     super(props, context)
-    // defaults to first stack
-    this.state = {
-      modalIsOpen: false
-    }
+    this.state = { modalIsOpen: false }
   }
 
   toggleModal() {
@@ -15,13 +12,13 @@ export default class FormHeader extends Component {
   }
 
   render() {
-    const { selectedStack, stacks, editBit } = this.props
+    const { selectedStack, stacks, onEdit } = this.props
 
     let modal
     if (this.state.modalIsOpen) {
       modal = <StackList
         stacks={stacks}
-        handleChange={editBit}
+        onEdit={onEdit}
         toggleModal={this.toggleModal.bind(this)}
         />
     }
@@ -30,7 +27,7 @@ export default class FormHeader extends Component {
       <div className="select-stack group">
 
         <div className="stack--list--left">
-          <span className="select-stack-in">In</span>
+          <span className="select-stack-in">In </span>
           <span
             className="select-stack-title"
             onClick={this.toggleModal.bind(this)}>
@@ -51,5 +48,5 @@ export default class FormHeader extends Component {
 FormHeader.propTypes = {
   stacks: PropTypes.array.isRequired,
   selectedStack: PropTypes.object.isRequired,
-  editBit: PropTypes.func.isRequired
+  onEdit: PropTypes.func.isRequired
 }

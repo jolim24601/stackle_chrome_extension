@@ -11,23 +11,39 @@ function renderRoot(initialState) {
   )
 }
 
+function findDefaultStack(stacks) {
+  // look for scrapbook, just assuming it's the first one for now
+  return stacks[0]
+}
+
+// this needs to be done through some kind of ext. auth.
+const username = 'jules'
+const user_id = 1
+
+function formatPotentialBit(defaultStack, potentialBit) {
+  const defaultBit = {
+    user_id,
+    privacy: defaultStack.privacy,
+    content: '',
+    kind: 'text',
+    stackIds: [defaultStack.id]
+  }
+
+  const parsedBit = potentialBit ? JSON.parse(potentialBit) : {}
+  return Object.assign({}, defaultBit, parsedBit)
+}
+
 chrome.storage.local.get('potentialBit', (objs) => {
   const { potentialBit } = objs
 
-  const defaultBit = {
-    user_id: 1,
-    privacy: false,
-    content: '',
-    kind: 'text',
-    stackIds: []
-  }
-
-  const username = 'jules'
   httpGet(username)
     .then(
       (stacks) => {
+        const defaultStack = findDefaultStack(stacks)
+        const formattedBit = formatPotentialBit(defaultStack, potentialBit)
+
         const initialState = {
-          potentialBit: potentialBit ? JSON.parse(potentialBit) : defaultBit,
+          potentialBit: formattedBit,
           stacks: JSON.parse(stacks)
         }
 

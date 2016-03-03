@@ -25,7 +25,8 @@ function _makePromise(verb, url, data) {
         ))
       }
       request.open(verb, url)
-      request.send(data)
+      request.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
+      request.send(JSON.stringify({ bit: data }))
     }
   )
 }
