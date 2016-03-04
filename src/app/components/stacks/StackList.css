@@ -1,0 +1,44 @@
+.changeCurrentStackTitle {
+  font-weight: 500;
+  margin-bottom: 35px;
+  margin-top: 2px;
+  color: rgba(0,0,0,0.4);
+  padding: 20px;
+  padding-bottom: 0;
+}
+
+.changeCurrentStack {
+  background: rgba(238, 238, 238, 0.9);
+}
+
+.bitFormModal {
+  background-color: rgba(255, 255, 255, 0.95);
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  height: 100% !important;
+  overflow: scroll;
+  top: 0;
+  left: 0;
+  -webkit-transform: translateZ(0) !important;
+}
+
+.buttonClose {
+  color: rgba(0,0,0,0.8);
+  font-size: 32px;
+  padding: 10px 20px;
+  position: absolute;
+  background: transparent;
+  top: 0;
+  right: 0;
+  letter-spacing: 0;
+  font-weight: 300;
+  font-style: normal;
+  border: none;
+}
+
+.buttonClose:hover {
+  color: rgba(0,0,0,0.44);
+  cursor: pointer;
+}

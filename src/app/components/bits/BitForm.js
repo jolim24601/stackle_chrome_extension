@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import FormHeader from '../stacks/FormHeader'
+import StackList from '../stacks/StackList'
 import Editor from './Editor'
 import './BitForm.css'
 
@@ -35,12 +36,12 @@ export default class BitForm extends Component {
     }
   }
 
-  handleChange(text) {
-    this.setState({ content: text })
+  toggleModal() {
+    this.setState({ modalIsOpen: !this.state.modalIsOpen })
   }
 
-  handleBlur() {
-    this.props.onSave(this.state)
+  handleChange(text) {
+    this.setState({ content: text })
   }
 
   handleStack(selectedStack) {
@@ -51,32 +52,49 @@ export default class BitForm extends Component {
     })
   }
 
+  focus() {
+    document.querySelector('.editor').focus()
+  }
+
+
   render() {
     const { stacks } = this.props
     const selectedStack = this.state.selectedStack || stacks[0]
 
+    let stackList
+    if (this.state.modalIsOpen) {
+      stackList = <StackList
+        stacks={stacks}
+        onEdit={this.handleStack.bind(this)}
+        toggleModal={this.toggleModal.bind(this)}
+        />
+    }
+
     return (
-      <div className="fadein bitForm">
-        <FormHeader
-           selectedStack={selectedStack}
-           stacks={stacks}
-           onEdit={this.handleStack.bind(this)}
-           />
+      <div className="wrapper">
+        {stackList}
 
+        <div onClick={this.focus.bind(this)} className="fadein bitForm">
+          <FormHeader
+             selectedStack={selectedStack}
+             stacks={stacks}
+             toggleModal={this.toggleModal.bind(this)}
+             />
 
-         <Editor
-           text={this.state.content}
-           onChange={this.handleChange.bind(this)}
-           className="editor"
-           options={{
-             toolbar: {buttons: ['h3']},
-             placeholder: {text: 'Add something'}
-           }}
-           />
+           <Editor
+             text={this.state.content}
+             onChange={this.handleChange.bind(this)}
+             className="editor"
+             options={{
+               toolbar: {buttons: ['h3']},
+               placeholder: {text: 'Add something'}
+             }}
+             />
+         </div>
 
-        <button
-          className="createBit"
-          onClick={this.handleClick.bind(this)}>></button>
+          <button
+            className="createBit"
+            onClick={this.handleClick.bind(this)}>></button>
       </div>
     )
    }

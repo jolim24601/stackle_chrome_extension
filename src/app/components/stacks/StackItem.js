@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import './StackItem.css'
 
 export default class StackItem extends Component {
   handleClick() {
@@ -12,17 +13,17 @@ export default class StackItem extends Component {
       <button
         value={stack.id}
         onClick={this.handleClick.bind(this)}
-        className="select--stack--btn"
+        className="selectStackBtn"
         >
 
-        <li className="stack--mini group">
-          <div className="stack--list--left">
+        <li className="stackMini group">
+          <div className="stackListLeft">
             <h3>{stack.title}</h3>
 
-            <div className="stack--list--meta">
+            <div className="stackListMeta">
               <span>{stack.privacy ? 'Lock ' : ' '}</span>
-              <span className="bit--count separator">{stack.bits.length} bits</span>
-              <span className="time--ago">Edited {stack.timeAgo}</span>
+              <span className="bitCount separator">{stack.bits.length} bits</span>
+              <span className="timeAgo">Edited {stack.timeAgo}</span>
             </div>
           </div>
         </li>

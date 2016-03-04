@@ -1,0 +1,30 @@
+
+.stackListMeta {
+  font-size: 14px;
+}
+
+.bitCount {
+  color: #57b374;
+}
+
+.timeAgo {
+  color: rgba(0,0,0,0.4);
+}
+
+.stackMini {
+  padding: 30px;
+  border-radius: 2px;
+  margin: 10px 0px;
+}
+
+.stackMini:hover {
+  background-color: rgba(230,230,230,1);
+}
+
+.separator:after {
+  content: "·";
+  color: rgba(0,0,0,0.3);
+  padding-right: .45em;
+  padding-left: .45em;
+  font-size: 18px;
+}

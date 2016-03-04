@@ -20,11 +20,11 @@ export default class StackList extends Component {
     )
 
     return (
-      <main className="bit-form-modal change--current--stack group">
-        <div className="button--close" onClick={toggleModal}>×</div>
+      <main className="bitFormModal changeCurrentStack group">
+        <div className="buttonClose" onClick={toggleModal}>×</div>
 
-        <section className="body--wrapper">
-          <h5 className="change--current--stack--title">Your stacks:</h5>
+        <section className="bodyWrapper">
+          <h3 className="changeCurrentStackTitle">Your stacks:</h3>
 
           <ul>
             {stackList}

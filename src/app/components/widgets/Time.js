@@ -17,7 +17,7 @@ export default class Time extends Component {
   toggleFormat() {
     if (this.state.format === 'HH:mm') {
       this.setState({ format: 'LT' })
-    } else {  
+    } else {
       this.setState({ format: 'HH:mm' })
     }
   }
@@ -33,8 +33,8 @@ export default class Time extends Component {
 
   render() {
     return (
-      <h1 
-        onDoubleClick={this.toggleFormat.bind(this)} 
+      <h1
+        onDoubleClick={this.toggleFormat.bind(this)}
         id="time">
         {this.formatTime()}
       </h1>

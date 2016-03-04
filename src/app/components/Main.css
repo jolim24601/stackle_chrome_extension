@@ -15,9 +15,11 @@
   font-size: 32px;
   white-space: nowrap;
   letter-spacing: 0;
+  color: #fff;
 }
 
 #time {
+  color: #fff;
   font-size: 36px;
   font-weight: 700;
   cursor: default;
