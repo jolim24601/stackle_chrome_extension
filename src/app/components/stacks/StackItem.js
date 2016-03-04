@@ -21,7 +21,7 @@ export default class StackItem extends Component {
             <h3>{stack.title}</h3>
 
             <div className="stackListMeta">
-              <span>{stack.privacy ? 'Lock ' : ' '}</span>
+              <span>{stack.privacy ? '🔒': ' '}</span>
               <span className="bitCount separator">{stack.bits.length} bits</span>
               <span className="timeAgo">Edited {stack.timeAgo}</span>
             </div>

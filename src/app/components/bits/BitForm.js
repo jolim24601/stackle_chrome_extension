@@ -84,6 +84,7 @@ export default class BitForm extends Component {
            <Editor
              text={this.state.content}
              onChange={this.handleChange.bind(this)}
+             onKeyDown={this.handleSubmit.bind(this)}
              className="editor"
              options={{
                toolbar: {buttons: ['h3']},
