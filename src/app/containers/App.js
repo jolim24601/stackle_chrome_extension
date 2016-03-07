@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import MainSection from '../components/MainSection'
 import * as Actions from '../actions/index'
-import './App.css';
+import './App.css'
 
 function mapStateToProps(state) {
   return {

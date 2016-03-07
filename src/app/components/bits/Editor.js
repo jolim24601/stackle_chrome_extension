@@ -15,38 +15,38 @@ export default class Editor extends Component {
   }
 
   componentDidMount() {
-    var dom = ReactDOM.findDOMNode(this);
+    var dom = ReactDOM.findDOMNode(this)
 
     this.medium = new MediumEditor(dom, this.props.options)
     this.medium.subscribe('editableInput', function (e) {
-      this._updated = true;
-      this.change(dom.innerHTML);
-    }.bind(this));
+      this._updated = true
+      this.change(dom.innerHTML)
+    }.bind(this))
 
     document.querySelector('.editor').focus()
   }
 
   componentWillUnmount() {
-    this.medium.destroy();
+    this.medium.destroy()
   }
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.text !== this.state.text && !this._updated) {
-      this.setState({text: nextProps.text});
+      this.setState({text: nextProps.text})
     }
 
-    if(this._updated) this._updated = false;
+    if(this._updated) this._updated = false
   }
 
   render() {
-    const tag = this.props.tag;
+    const tag = this.props.tag
     const props = blacklist(this.props, 'tag', 'contentEditable', 'dangerouslySetInnerHTML')
 
-    let canEdit;
+    let canEdit
     if (this.props.editOverride) {
-      canEdit = false;
+      canEdit = false
     } else {
-      canEdit = true;
+      canEdit = true
     }
 
     Object.assign(props, {
