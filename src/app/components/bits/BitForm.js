@@ -34,6 +34,20 @@ export default class BitForm extends Component {
     // cmd + enter
     if (e.which === 13 && e.metaKey) {
       this.handleClick()
+    } else if (e.which === 13) {
+      this.handleEmbed(e)
+    }
+  }
+
+  handleEmbed(e) {
+    const lastChild = e.target.lastChild
+    const lastLine = lastChild.innerText
+
+    // currently only supporting this
+    if (lastLine.startsWith('http')) {
+      this.getEmbedlyJSON(lastLine, function(embed) {
+        lastChild.innerHTML = embed
+      })
     }
   }
 
@@ -41,9 +55,8 @@ export default class BitForm extends Component {
     this.setState({ modalIsOpen: !this.state.modalIsOpen })
   }
 
-  handleChange(text) {
-    if (text.startsWith('http')) { text = <Embedly url={text} /> }
-    this.setState({ content: text })
+  handleChange(content) {
+    this.setState({ content })
   }
 
   handleStack(selectedStack) {
@@ -54,16 +67,11 @@ export default class BitForm extends Component {
     })
   }
 
-  componentDidMount() {
-    // test
-    this.getCard()
-  }
-
   focus() {
     document.querySelector('.editor').focus()
   }
 
-  getCard() {
+  getEmbedlyJSON(url, callback) {
     // some examples
     const video = 'https://www.youtube.com/watch?v=xkd0hAHxSm0'
     const article = 'http://www.nytimes.com/2016/03/07/us/politics/democratic-debate.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=first-column-region&region=top-news&WT.nav=top-news'
@@ -72,8 +80,6 @@ export default class BitForm extends Component {
     const tweetNoPic = 'https://twitter.com/BernieSanders/status/706673186277089280'
     const liveStream = 'http://www.twitch.tv/summit1g'
     // const audio = 'https://soundcloud.com/travisscott-2/wonderful-ftthe-weeknd'
-
-    const url = video
 
     const key = '3d7cc1df382249b09efacdd6caad0b1f'
     const form = this
@@ -87,38 +93,43 @@ export default class BitForm extends Component {
             return
           }
 
-          const text = JSON.parse(res.text)
-          console.log(text)
-
-          let html
-
-          // we are checking for type but it might make sense to check for provider too
-          // providers like twitter can send back tweets of different types (e.g. link, pic...)
-          switch (text.type) {
-            case 'link':
-              html = `<a href=${text.url} target="_blank">`
-                      + `<img src=${text.thumbnail_url} />`
-                      + `<strong>${text.title}</strong>`
-                      + '<br/>'
-                      + `<em>${text.description.substr(0, 100)}...</em>`
-                      + text.provider_url
-                      + '</a>'
-              break
-            case 'video':
-              html = text.html
-              break
-            case 'photo':
-              html = `<img src=${text.url} />`
-              break
-            case 'rich':
-              // might want to use Player.js here
-              break
-            default:
-          }
-
-          form.setState({ content: form.state.content + html })
+          const parsedText = JSON.parse(res.text)
+          const embed = form.makeEmbed(parsedText)
+          callback(embed)
         }
       )
+  }
+
+  makeEmbed(text) {
+    console.log(text)
+
+    let html
+
+    // we are checking for type but it might make sense to check for provider too
+    // providers like twitter can send back tweets of different types (e.g. link, pic...)
+    switch (text.type) {
+      case 'link':
+        html = `<a href=${text.url} target="_blank">`
+                + `<img src=${text.thumbnail_url} />`
+                + `<strong>${text.title}</strong>`
+                + '<br/>'
+                + `<em>${text.description.substr(0, 100)}...</em>`
+                + text.provider_url
+                + '</a>'
+        break
+      case 'video':
+        html = text.html
+        break
+      case 'photo':
+        html = `<img src=${text.url} />`
+        break
+      case 'rich':
+        // might want to use Player.js here
+        break
+      default:
+    }
+
+    return html
   }
 
   render() {
