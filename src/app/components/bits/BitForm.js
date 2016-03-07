@@ -74,7 +74,10 @@ export default class BitForm extends Component {
       <div className="wrapper">
         {stackList}
 
-        <div onClick={this.focus.bind(this)} className="fadein bitForm">
+        <div
+          onClick={this.focus.bind(this)}
+          className="fadein bitForm"
+          >
           <FormHeader
              selectedStack={selectedStack}
              stacks={stacks}

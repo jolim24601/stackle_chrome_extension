@@ -4,11 +4,11 @@ var webpack = require('webpack');
 module.exports = {
   entry: {
     tab: ['./src/tab.js'],
-    inject: ['./src/inject.js']
+    content: ['./src/content.js']
   },
   output: {
     path: path.join(__dirname, 'build/js'),
-    filename: 'bundle.js'
+    filename: '[name].bundle.js'
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
@@ -30,11 +30,11 @@ module.exports = {
       exclude: /node_modules/
     },
     {
-      test: /\.css$/, 
+      test: /\.css$/,
       loader: 'style!css'
     },
-    { 
-      test: /\.png$/, 
+    {
+      test: /\.png$/,
       loader: 'url-loader?limit=100000'
     }]
   }

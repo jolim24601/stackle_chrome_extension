@@ -14,7 +14,13 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.IgnorePlugin(/[^/]+\/[\S]+.prod$/),
+    new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('development')
+    }
+})
   ],
   module: {
     loaders: [{
@@ -26,8 +32,8 @@ module.exports = {
       test: /\.css$/,
       loader: 'style!css'
     },
-    { 
-      test: /\.png$/, 
+    {
+      test: /\.png$/,
       loader: 'url-loader?limit=100000'
     }]
   }

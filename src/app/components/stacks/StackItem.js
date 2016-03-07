@@ -22,7 +22,7 @@ export default class StackItem extends Component {
 
             <div className="stackListMeta">
               <span>{stack.privacy ? '🔒': ' '}</span>
-              <span className="bitCount separator">{stack.bits.length} bits</span>
+              <span className="bitCount separator">{stack.bitCount} bits</span>
               <span className="timeAgo">Edited {stack.timeAgo}</span>
             </div>
           </div>
