@@ -93,35 +93,34 @@ export default class BitForm extends Component {
             return
           }
 
-          const parsedText = JSON.parse(res.text)
-          const embed = form.makeEmbed(parsedText)
+          const parsedResponse = JSON.parse(res.text)
+          const embed = form.makeEmbed(parsedResponse)
           callback(embed)
         }
       )
   }
 
-  makeEmbed(text) {
-    console.log(text)
+  makeEmbed(res) {
+    console.log(res)
 
     let html
-
     // we are checking for type but it might make sense to check for provider too
     // providers like twitter can send back tweets of different types (e.g. link, pic...)
-    switch (text.type) {
+    switch (res.type) {
       case 'link':
-        html = `<a href=${text.url} target="_blank">`
-                + `<img src=${text.thumbnail_url} />`
-                + `<strong>${text.title}</strong>`
+        html = `<a href=${res.url} target="_blank">`
+                + `<img src=${res.thumbnail_url} />`
+                + `<strong>${res.title}</strong>`
                 + '<br/>'
-                + `<em>${text.description.substr(0, 100)}...</em>`
-                + text.provider_url
+                + `<em>${res.description.substr(0, 100)}...</em>`
+                + res.provider_url
                 + '</a>'
         break
       case 'video':
-        html = text.html
+        html = res.html
         break
       case 'photo':
-        html = `<img src=${text.url} />`
+        html = `<img src=${res.url} />`
         break
       case 'rich':
         // might want to use Player.js here
