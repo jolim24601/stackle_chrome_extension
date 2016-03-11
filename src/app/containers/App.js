@@ -6,6 +6,10 @@ import * as Actions from '../actions/index'
 import SuperAgent from 'superagent'
 import './App.css'
 
+// pic of the day
+const potdUrl = 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1'
+const potdBaseUrl = 'http://www.bing.com'
+
 function mapStateToProps(state) {
   return {
     stacks: state.stacks,
@@ -19,14 +23,12 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-
-
 class App extends Component {
   fetchBackgroundImage() {
     const app = this
 
     SuperAgent
-      .get('http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US')
+      .get(potdUrl)
       .end((err, res) => {
         if (err) {
           console.log(error)
@@ -36,7 +38,7 @@ class App extends Component {
         const parsedResponse = JSON.parse(res.text)
         const image = parsedResponse.images[0]
 
-        app.setState({ backgroundUrl: `http://www.bing.com${image.url}` })
+        app.setState({ backgroundUrl: `${potdBaseUrl}${image.url}` })
       })
   }
 

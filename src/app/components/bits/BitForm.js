@@ -5,16 +5,14 @@ import Editor from './Editor'
 import SuperAgent from 'superagent'
 import './BitForm.css'
 
-const blankState = {
-  selectedStack: null,
-  modalIsOpen: false
-}
-
 export default class BitForm extends Component {
   constructor(props, context) {
     super(props, context)
 
-    this.state = Object.assign({}, blankState, this.props.potentialBit)
+    this.state = Object.assign({
+      selectedStack: null,
+      modalIsOpen: null
+    }, this.props.potentialBit)
   }
 
   handleClick() {
