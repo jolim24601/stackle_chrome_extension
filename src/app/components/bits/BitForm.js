@@ -50,8 +50,7 @@ export default class BitForm extends Component {
   }
 
   toggleModal() {
-    const modalIsOpen = true;
-    this.setState({ modalIsOpen })
+    this.setState({ modalIsOpen: !this.state.modalIsOpen })
   }
 
   handleChange(content) {
