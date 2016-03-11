@@ -17,10 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 
 }
 
-// app.get('*', function(req, res) {
-//   res.send('void');
-// });
-
 app.listen(3000, 'localhost', function(err) {
   if (err) {
     console.log(err);
