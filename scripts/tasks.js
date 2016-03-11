@@ -17,6 +17,6 @@ exports.copyAssets = (type) => {
   rm('-rf', type)
   mkdir(type)
   cp(`src/manifest.${env}.json`, `${type}/manifest.json`)
-  cp('-R', 'src/assets/', type)
+  cp('-R', 'src/assets/', `${type}/assets`)
   cp('src/tab.html', type)
 }
