@@ -12,6 +12,7 @@ function writeSelection() {
   chrome.storage.local.set({ potentialBit })
 }
 
-window.addEventListener('load', () => {
+window.addEventListener('load', function load(e) {
+  window.removeEventListener('load', load, false)
   document.onmouseup = writeSelection
-})
+}, false)
