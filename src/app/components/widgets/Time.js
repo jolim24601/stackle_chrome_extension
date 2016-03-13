@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import moment from 'moment'
 
 export default class Time extends Component {
-  constructor(props, context) {
-    super(props, context)
+  constructor(props) {
+    super(props)
     // eventually pass the format in as prop
     this.state = { format: 'LT' }
   }

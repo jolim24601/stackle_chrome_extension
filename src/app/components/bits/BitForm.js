@@ -6,8 +6,8 @@ import SuperAgent from 'superagent'
 import './BitForm.css'
 
 export default class BitForm extends Component {
-  constructor(props, context) {
-    super(props, context)
+  constructor(props) {
+    super(props)
 
     this.state = Object.assign({
       selectedStack: null,

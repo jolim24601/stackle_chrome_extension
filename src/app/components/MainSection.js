@@ -6,11 +6,9 @@ import './Main.css'
 import { httpPost } from '../utils/ApiUtils'
 
 export default class MainSection extends Component {
-  constructor(props, context) {
-    super(props, context)
-    this.state = {
-      showBitForm: false
-    }
+  constructor(props) {
+    super(props)
+    this.state = { showBitForm: false }
   }
 
   handleClick() {
@@ -19,7 +17,6 @@ export default class MainSection extends Component {
 
   handleSave(bit) {
     if (bit.content.trim().length !== 0) {
-
       httpPost(bit)
     }
 
