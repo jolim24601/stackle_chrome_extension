@@ -13,6 +13,7 @@
 
 #greetings {
   font-size: 32px;
+  font-weight: 400;
   white-space: nowrap;
   letter-spacing: 0;
   color: #fff;
@@ -20,7 +21,7 @@
 
 #time {
   color: #fff;
-  font-size: 36px;
+  font-size: 80px;
   font-weight: 700;
   cursor: default;
   -webkit-user-select: none;

@@ -1,6 +1,6 @@
 .editor {
   outline: none;
-  padding: 10px 30px;
+  padding: 40px 30px;
   line-height: 1.7 !important;
   color: black;
   max-height: 300px;
@@ -11,29 +11,6 @@
   cursor: pointer;
   color: rgba(0,0,0,0.6);
   text-decoration: underline;
-}
-
-.createBit {
-  text-align: center;
-  border-radius: 50%;
-  background-color: #02b875;
-  border: 0;
-  color: #fff;
-  box-shadow: 0 1px rgba(0,0,0,0.3);
-  line-height: 2px;
-  cursor: pointer;
-  position: fixed;
-  transform: translateX(-50%);
-  left: 50%;
-  bottom: 30px;
-  height: 40px;
-  width: 40px;
-  z-index: 1000;
-  font-size: 1.33333333em;
-}
-
-.createBit:hover {
-  background-color: #029f65;
 }
 
 .bitForm {
@@ -48,4 +25,13 @@
   left: 50%;
   position: fixed;
   bottom: 150px;
+  z-index: 3;
+}
+
+.formOverlay {
+  background-size: 100% 100%;
+  z-index: 2;
+  position: fixed;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background-color: rgba(0,0,0,0.7);
 }

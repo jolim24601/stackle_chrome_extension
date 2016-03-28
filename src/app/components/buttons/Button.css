@@ -1,4 +1,4 @@
-.newBit {
+.bitBtn {
   border-radius: 50%;
   background-color: #02b875;
   border: 0;
@@ -12,11 +12,15 @@
   bottom: 30px;
   height: 40px;
   width: 40px;
-  z-index: 1000;
-  font-size: 1.33333333em;
   text-align: center;
+  z-index: 1000;
 }
 
-.newBit:hover {
+.bitBtn:hover {
   background-color: #029f65;
+}
+
+.plusSign, .arrowSign {
+  font-size: 1.33333333em;
+  font-weight: 700;
 }

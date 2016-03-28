@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import './NewBit.css'
+import './Button.css'
 
 export default class NewBit extends Component {
   render() {
     return (
-      <button className="newBit" onClick={this.props.onClick}>+</button>
+      <button className="bitBtn" onClick={this.props.onClick}>
+        <span className="plusSign">+</span>
+      </button>
     )
   }
 }

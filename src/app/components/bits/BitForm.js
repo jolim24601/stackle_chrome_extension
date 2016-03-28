@@ -4,6 +4,7 @@ import StackList from '../stacks/StackList'
 import Editor from './Editor'
 import SuperAgent from 'superagent'
 import './BitForm.css'
+import '../buttons/Button.css'
 
 export default class BitForm extends Component {
   constructor(props) {
@@ -144,6 +145,8 @@ export default class BitForm extends Component {
 
     return (
       <div className="wrapper">
+        <div className="formOverlay" />
+
         {stackList}
 
         <div
@@ -169,8 +172,11 @@ export default class BitForm extends Component {
          </div>
 
           <button
-            className="createBit"
-            onClick={this.handleClick.bind(this)}>></button>
+            className="bitBtn"
+            onClick={this.handleClick.bind(this)}>
+
+            <span className="arrowSign">></span>
+          </button>
       </div>
     )
    }

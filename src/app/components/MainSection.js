@@ -32,12 +32,19 @@ export default class MainSection extends Component {
   render() {
     const { stacks, potentialBit, actions } = this.props
 
-    let form
+    let form, widgets
     if (!potentialBit.content
         && !potentialBit.content.length > 0
         && !this.state.showBitForm) {
           form = (
             <NewBit onClick={this.handleClick.bind(this)} />
+          )
+
+          widgets = (
+            <div className="centerAbove">
+              <Time />
+              <h1 id="greetings">Good day, Jules</h1>
+            </div>
           )
     } else {
       form = (
@@ -51,10 +58,7 @@ export default class MainSection extends Component {
 
     return (
       <section className="fadein main">
-        <div className="centerAbove">
-          <Time />
-          <h1 id="greetings">Good day, Jules</h1>
-        </div>
+        {widgets}
 
         {form}
       </section>
@@ -63,6 +67,7 @@ export default class MainSection extends Component {
 }
 
 MainSection.propTypes = {
+  user: PropTypes.object,
   stacks: PropTypes.array.isRequired,
   potentialBit: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired

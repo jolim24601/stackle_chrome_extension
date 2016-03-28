@@ -4,11 +4,11 @@ function writeSelection() {
     kind: 'text'
   }
 
-  const text = window.getSelection().toString()
+  const content = window.getSelection().toString()
   const potentialBit = JSON.stringify(
-    Object.assign({}, defaultBit, { content: text })
+    Object.assign({}, defaultBit, { content })
   )
-  console.log(potentialBit)
+
   chrome.storage.local.set({ potentialBit })
 }
 

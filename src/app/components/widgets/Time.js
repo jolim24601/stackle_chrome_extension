@@ -4,8 +4,8 @@ import moment from 'moment'
 export default class Time extends Component {
   constructor(props) {
     super(props)
-    // eventually pass the format in as prop
-    this.state = { format: 'LT' }
+    
+    this.state = { format: 'h:mm' }
   }
 
   componentDidMount() {
@@ -16,7 +16,7 @@ export default class Time extends Component {
 
   toggleFormat() {
     if (this.state.format === 'HH:mm') {
-      this.setState({ format: 'LT' })
+      this.setState({ format: 'h:mm' })
     } else {
       this.setState({ format: 'HH:mm' })
     }
